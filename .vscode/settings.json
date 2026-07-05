@@ -7,5 +7,9 @@
 		"**/.DS_Store": true,
 		"**/*.o": true,
 		"**/*.exe": true,
-	}
+	},
+	"C_Cpp.intelliSenseEngine": "default",
+	"C_Cpp.intelliSenseEngineFallback": "disabled",
+	"C_Cpp.autocomplete": "default",
+	"C_Cpp.errorSquiggles": "enabledIfIncludesResolve"
 }

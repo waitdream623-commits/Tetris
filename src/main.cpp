@@ -1,27 +1,20 @@
 #include <raylib.h>
-#include "ball.h"
+#include "grid.h"
 
 int main() 
 {
-    const Color darkGreen = {20, 160, 133, 255};
-    
-    constexpr int screenWidth = 800;
-    constexpr int screenHeight = 600;
-    
-    Ball ball;
-    
-    InitWindow(screenWidth, screenHeight, "My first RAYLIB program!");
+    InitWindow(300, 600, "Tetris");
     SetTargetFPS(60);
-    
+
+    Grid grid;   // 创建 Grid 对象
+    grid.grid[0][0] = 1; // 设置网格的第一个单元格为红色
     while (!WindowShouldClose())
-    {
-        ball.Update();
-        
+    { 
         BeginDrawing();
-            ClearBackground(darkGreen);
-            ball.Draw();
+        ClearBackground(DARKBLUE);
+        grid.Draw();     // 调用成员函数——用 . 操作符
+        
         EndDrawing();
     }
-    
     CloseWindow();
 }
