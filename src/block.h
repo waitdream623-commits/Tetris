@@ -11,6 +11,7 @@ class Block//父类，
         std::map<int, std::vector<Position>> cells; // 存储不同旋转状态下的方块形状，mp[0]表示旋转状态0的方块形状，mp[1]表示旋转状态1的方块形状，依此类推
         void Draw();//绘制方块,外部调用
         void move(int row, int column);//移动方块，外部调用
+        void rotate(); // 旋转方块，外部调用，不能内部
     private:
         int rotationState; // 当前旋转状态，记录上一个状态
         int cellSize; // 方块单元格的大小

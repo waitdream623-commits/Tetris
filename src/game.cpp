@@ -36,3 +36,22 @@ void game::Draw()
     grid.Draw(); // 绘制网格
     currentBlock.Draw(); // 绘制当前方块
 }
+void game::handleInput()
+{
+    if (IsKeyPressed(KEY_LEFT))
+    {
+        currentBlock.move(0, -1); // 向左移动
+    }
+    else if (IsKeyPressed(KEY_RIGHT))
+    {
+        currentBlock.move(0, 1); // 向右移动
+    }
+    else if (IsKeyPressed(KEY_DOWN))
+    {
+        currentBlock.move(1, 0); // 向下移动
+    }
+    else if (IsKeyPressed(KEY_UP))
+    {
+        currentBlock.rotate();
+    }
+}

@@ -30,3 +30,9 @@ void Block::move(int row, int column)//对该物块的操作
     rowoffset += row;
     columnoffset += column;
 }
+void Block::rotate()//旋转方块
+{
+    // 旋转方块的逻辑
+    // 可以根据当前旋转状态来更新方块的形状
+    rotationState = (rotationState + 1) % cells.size();
+}

@@ -10,6 +10,7 @@ int main()
         BeginDrawing();
         ClearBackground(DARKGRAY);
         game.Draw(); // 绘制游戏内容，包括网格和当前方块
+        game.handleInput(); // 处理用户输入
         EndDrawing();
     }
     CloseWindow();
