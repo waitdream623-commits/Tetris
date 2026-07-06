@@ -1,19 +1,15 @@
 #include <raylib.h>
-#include "grid.h"
-#include "blocks.cpp"
+#include "game.h"
 int main() 
 {
     InitWindow(300, 600, "Tetris");
     SetTargetFPS(60);
-    //Lblock block;
-    IBlock iblock;
-    Grid grid;   // 创建 Grid 对象
+   game game; // 创建游戏对象
     while (!WindowShouldClose())
     { 
         BeginDrawing();
         ClearBackground(DARKGRAY);
-        grid.Draw();     // 调用成员函数——用 . 操作符
-        iblock.Draw();    // 调用成员函数——用 . 操作符
+        game.Draw(); // 绘制游戏内容，包括网格和当前方块
         EndDrawing();
     }
     CloseWindow();

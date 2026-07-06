@@ -22,4 +22,4 @@
 - 创建单独colors.h全局管理颜色
 - 创建position.h存放4*4方格中每个形状的位置，也就是二维坐标
 - 继承父类block的blocks，只能修改public与protect，不能修改private![alt text](image-2.png)
-- 
+- 移动工作![alt text](image-3.png)
