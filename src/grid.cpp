@@ -7,6 +7,7 @@ Grid::Grid()//初始化
     this->height = 20;
     this->cellSize = 30; // 设置每个单元格的大小为 30 像素
     initGrid(); // 初始化网格
+    colors = GetCellColors(); // 获取颜色列表
 }
 void Grid::Draw()
 {
