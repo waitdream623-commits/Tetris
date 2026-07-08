@@ -12,6 +12,8 @@ class Block//父类，
         void Draw();//绘制方块,外部调用
         void move(int row, int column);//移动方块，外部调用
         void rotate(); // 旋转方块，外部调用，不能内部
+        void undorotate();
+        std::vector<Position> GetPositions();//获取当前方块的所有单元格位置，外部调用
     private:
         int rotationState; // 当前旋转状态，记录上一个状态
         int cellSize; // 方块单元格的大小

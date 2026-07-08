@@ -36,3 +36,20 @@ void Block::rotate()//旋转方块
     // 可以根据当前旋转状态来更新方块的形状
     rotationState = (rotationState + 1) % cells.size();
 }
+std::vector<Position> Block::GetPositions()//获取当前方块的所有单元格位置
+{
+    std::vector<Position> currentShape = cells[rotationState];
+    std::vector<Position> positions;
+    for (const Position& pos : currentShape)
+    {
+        int x,y;
+        x = pos.column ;
+        y = pos.row ;
+        positions.push_back({y+rowoffset, x+columnoffset});
+    }
+    return positions;
+}
+void Block::undorotate()
+{
+    rotationState=(rotationState-1+cells.size())%cells.size();
+}
