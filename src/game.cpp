@@ -120,6 +120,7 @@ void game::LockBlock()
     }
     currentBlock=nextBlock;
     nextBlock=GetRandomBlock();
+    grid.ClearAllRow();
 }
 bool game::LockFits()//该区域没有其他颜色
 {

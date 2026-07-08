@@ -44,3 +44,47 @@ void Grid::initGrid()//初始化网格
 
 }
 
+int Grid::ClearAllRow()
+{
+    int completed=0;
+    for(int row=height-1;row>=0;row--)
+    {
+        if(IsFull(row))
+        {
+            ClearRow(row);
+            completed++;
+        
+        }
+        else if(completed>0)
+        {
+            MoveRowDown(row,completed);
+        }
+    }
+    return completed;
+}
+
+bool Grid::IsFull(int row)
+{
+    for(int column=0;column<width;column++)
+    {
+        if(grid[row][column]==0)return false;
+    }
+    return true;
+}
+
+void Grid::ClearRow(int row)
+{
+    for(int column=0;column<width;column++)
+    {
+        grid[row][column]=0;
+    }
+}
+
+void Grid::MoveRowDown(int row, int numcmp)
+{
+    for(int column=0;column<width;column++)
+    {
+        grid[row+numcmp][column]=grid[row][column];
+        grid[row][column]=0;
+    }
+}
