@@ -16,15 +16,22 @@ class game
         bool EventTriggered(double interval);
         bool gameover;
         void Reset();
+        void UpdateMusic();
+        int score;
+        ~game();
+        Music music;
+        Sound rotatesound,clearsound;
     private:
         Grid grid;
         std::vector<Block> blocks; // 存储所有方块
         Block currentBlock; // 当前方块
         Block nextBlock; // 下一个方块//实现预览功能
+        void UpdateScore(int linecleared,int movedown);
         double lasttime;
         double currenttime;
         void movedown();
         void LockBlock();
         bool LockFits();
+        
         
 };

@@ -8,7 +8,7 @@ Block::Block()
     this->rowoffset = 0;
     this->columnoffset = 0;
 }
-void Block::Draw()
+void Block::Draw(int offx,int offy)
 {
     // 绘制方块的逻辑
     // 可以根据当前旋转状态和方块形状来绘制方块
@@ -18,7 +18,7 @@ void Block::Draw()
     {
         int x = pos.column * cellSize;
         int y = pos.row * cellSize;
-        DrawRectangle(x+1+columnoffset*cellSize, y+1+rowoffset*cellSize, cellSize-1, cellSize-1, colors[id]);
+        DrawRectangle(x+offx+columnoffset*cellSize, y+offy+rowoffset*cellSize, cellSize-1, cellSize-1, colors[id]);
     }
 
 

@@ -63,3 +63,4 @@ bool game::EventTriggered(double interval)
 - 实现游戏结束
   - 检查新生成块是否被占用，即表示结束
   - 重启游戏，按任意键
+- 实现分数显示i

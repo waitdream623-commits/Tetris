@@ -7,9 +7,9 @@ class Block//父类，
 {
     public:
         Block();
-        int id;//后续对应每一种方块
+        int id;                                     // 后续对应每一种方块
         std::map<int, std::vector<Position>> cells; // 存储不同旋转状态下的方块形状，mp[0]表示旋转状态0的方块形状，mp[1]表示旋转状态1的方块形状，依此类推
-        void Draw();//绘制方块,外部调用
+        void Draw(int offx, int offy);//绘制方块,外部调用
         void move(int row, int column);//移动方块，外部调用
         void rotate(); // 旋转方块，外部调用，不能内部
         void undorotate();

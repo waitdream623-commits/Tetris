@@ -1,5 +1,6 @@
 #include "game.h"
 #include <random>
+#include <time.h>
 game::game()
 {
     // 初始化网格
@@ -9,6 +10,25 @@ game::game()
     nextBlock = GetRandomBlock();
     lasttime=0;
     gameover=false;
+    score=0;
+    InitAudioDevice();
+    music=LoadMusicStream("sounds/music.mp3");
+    PlayMusicStream(music);
+    rotatesound = LoadSound("Sounds/rotate.mp3");
+    clearsound = LoadSound("Sounds/clear.mp3");
+    srand(time(0));
+}
+game::~game()
+{
+    UnloadSound(rotatesound);
+    UnloadSound(clearsound);
+    UnloadMusicStream(music);
+    CloseAudioDevice();
+}
+
+void game::UpdateMusic()
+{
+    UpdateMusicStream(music);
 }
 std::vector<Block> game::getAllBlocks()
 {
@@ -36,9 +56,44 @@ Block game::GetRandomBlock()//保证一轮每个方块都出现
 void game::Draw()
 {
     grid.Draw(); // 绘制网格
-    currentBlock.Draw(); // 绘制当前方块
+    currentBlock.Draw(1,1); // 绘制当前方块
+    switch (nextBlock.id)
+    {
+    case 3:
+        nextBlock.Draw(255, 290);
+        break;
+    case 4:
+        nextBlock.Draw(255, 280);
+        break;
+    default:
+        nextBlock.Draw(270, 270);
+        break;
+    }
 }
-void game::movedown()//操作和固定需要用到
+void game::UpdateScore(int linecleared, int movedown)
+{
+    if(linecleared==1)
+    {
+        score+=100;
+    }
+    else if(linecleared==2)
+    {
+        score+=300;
+    }
+    else if(linecleared==3)
+    {
+        score+=500;
+    }
+    else if(linecleared==4)
+    {
+        score+=700;
+    }
+    if(movedown)
+    {
+        score+=movedown;
+    }
+}
+void game::movedown() // 操作和固定需要用到
 {
       currentBlock.move(1, 0); // 向下移动
          if(IsBlockOutside()||LockFits()==false)
@@ -69,6 +124,7 @@ void game::handleInput()
     else if (IsKeyPressed(KEY_DOWN))
     {
        movedown();
+       UpdateScore(0,1);
     }
     else if (IsKeyPressed(KEY_UP))
     {
@@ -77,6 +133,8 @@ void game::handleInput()
         {
             currentBlock.undorotate();
         }
+        else
+        PlaySound(rotatesound);
 
     }
 }
@@ -119,6 +177,7 @@ void game::Reset()
     blocks = getAllBlocks(); // 获取所有方块的指针
     currentBlock = GetRandomBlock();
     nextBlock = GetRandomBlock();
+    score=0;
 }
 
 void game::LockBlock()
@@ -134,7 +193,10 @@ void game::LockBlock()
         gameover=true;
     }
     nextBlock=GetRandomBlock();
-    grid.ClearAllRow();
+    int clearedrows=grid.ClearAllRow();
+    if(clearedrows>0)
+    PlaySound(clearsound);
+    UpdateScore(clearedrows,0);
 }
 bool game::LockFits()//该区域没有其他颜色
 {
