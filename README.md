@@ -60,4 +60,6 @@ bool game::EventTriggered(double interval)
   - 锁定更新数据到grid，将操控块变成下一个
 - 实现清除行
   - 在lockblock函数调用
-- 
+- 实现游戏结束
+  - 检查新生成块是否被占用，即表示结束
+  - 重启游戏，按任意键

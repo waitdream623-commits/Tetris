@@ -14,6 +14,8 @@ class game
         bool IsBlockOutside(); // 检查当前方块是否超出网格边界
         void AutoMoveDown();
         bool EventTriggered(double interval);
+        bool gameover;
+        void Reset();
     private:
         Grid grid;
         std::vector<Block> blocks; // 存储所有方块
@@ -24,4 +26,5 @@ class game
         void movedown();
         void LockBlock();
         bool LockFits();
+        
 };

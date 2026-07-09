@@ -8,6 +8,7 @@ game::game()
     currentBlock = GetRandomBlock();
     nextBlock = GetRandomBlock();
     lasttime=0;
+    gameover=false;
 }
 std::vector<Block> game::getAllBlocks()
 {
@@ -111,6 +112,15 @@ bool game::EventTriggered(double interval)
     }
     return false;
 }
+
+void game::Reset()
+{
+    grid.initGrid();
+    blocks = getAllBlocks(); // 获取所有方块的指针
+    currentBlock = GetRandomBlock();
+    nextBlock = GetRandomBlock();
+}
+
 void game::LockBlock()
 {
     std::vector<Position>tiles=currentBlock.GetPositions();
@@ -119,6 +129,10 @@ void game::LockBlock()
         grid.grid[item.row][item.column]=currentBlock.id;
     }
     currentBlock=nextBlock;
+    if(LockFits()==false)//新生成方块没有位置放置
+    {
+        gameover=true;
+    }
     nextBlock=GetRandomBlock();
     grid.ClearAllRow();
 }

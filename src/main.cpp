@@ -8,10 +8,20 @@ int main()
     while (!WindowShouldClose())
     { 
         BeginDrawing();
-        game.AutoMoveDown();
+        
         ClearBackground(DARKGRAY);
         game.Draw(); // 绘制游戏内容，包括网格和当前方块
-        game.handleInput(); // 处理用户输入 
+        if(game.gameover==false)
+        {
+            game.handleInput(); // 处理用户输入 
+            game.AutoMoveDown();
+        }
+        if(game.gameover&&GetKeyPressed()!=0)
+        {
+            
+            game.gameover=false;
+            game.Reset();
+        }
         EndDrawing();
     }
     CloseWindow();
